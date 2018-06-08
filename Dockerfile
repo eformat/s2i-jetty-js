@@ -10,7 +10,7 @@ ENV BUILDER_VERSION 1.0
 ENV JETTY_VERSION=9.4.9.v20180320 \
  DEPLOY_DIR=/deployments \
  JAVA=/usr/bin/java \
- MAVEN_VERSION=3.5.3 
+ MAVEN_VERSION=3.5.3
 
 # TODO: Set labels used in OpenShift to describe the builder image
 LABEL io.k8s.description="Platform for building Jetty Not for Production" \
@@ -57,8 +57,8 @@ RUN chmod a+x /usr/local/jetty/bin/deploy-and-run.sh
 # This default user is created in the openshift/base-centos7 image
 USER 1001
 
-ENV JETTY_HOME /usr/local/jetty
-ENV PATH $PATH:$JETTY_HOME/bin
+ENV JETTY_HOME=/usr/local/jetty \
+    PATH=$PATH:$JETTY_HOME/bin
 
 
 # TODO: Set the default port for applications built using this image
