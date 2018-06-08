@@ -7,9 +7,10 @@ FROM openshift/base-centos7
 # TODO: Rename the builder environment variable to inform users about application you provide them
 ENV BUILDER_VERSION 1.0
 
-ENV JETTY_VERSION 9.4.9.v20180320
-ENV DEPLOY_DIR /deployments
-ENV JAVA /usr/bin/java
+ENV JETTY_VERSION=9.4.9.v20180320 \
+ DEPLOY_DIR=/deployments \
+ JAVA=/usr/bin/java \
+ MAVEN_VERSION=3.5.3 
 
 # TODO: Set labels used in OpenShift to describe the builder image
 LABEL io.k8s.description="Platform for building Jetty Not for Production" \
