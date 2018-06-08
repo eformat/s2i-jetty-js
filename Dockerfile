@@ -26,7 +26,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
 
 # Install JETTY
 RUN curl http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${JETTY_VERSION}/jetty-distribution-${JETTY_VERSION}.tar.gz -o /tmp/jetty.tar.gz && \
-    cd /opt && tar zxvf /tmp/jetty.tar.gz && \
+    cd /usr/local && tar zxvf /tmp/jetty.tar.gz && \
     ln -s /usr/local/jetty-distribution-${JETTY_VERSION} /usr/local/jetty && \
     chgrp -R 0 /usr/local/jetty-distribution-${JETTY_VERSION} && \
     chmod -R g=u /usr/local/jetty-distribution-${JETTY_VERSION} && \

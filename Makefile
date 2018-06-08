@@ -1,4 +1,4 @@
-IMAGE_NAME = jboss/base-jdk:8
+IMAGE_NAME = jetty/base-jdk:8
 
 .PHONY: build
 build:
