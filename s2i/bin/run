@@ -7,4 +7,5 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-exec java -Djava.io.tmpdir=/tmp/jetty -jar /usr/local/jetty/start.jar
+#exec java -Djava.io.tmpdir=/tmp/jetty -jar /usr/local/jetty/start.jar
+exec /usr/local/jetty/bin/jetty.sh run
