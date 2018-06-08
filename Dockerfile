@@ -46,7 +46,9 @@ RUN curl http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${JE
 COPY ./s2i/bin/ /usr/libexec/s2i
 
 # TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
-# RUN chown -R 1001:1001 /opt/jetty
+RUN chown -R 1001:1001 /usr/local/jetty && \
+    chown -R 1001:1001 /opt/s2i && \
+    chown -R 1001:1001 /opt/app-root
 COPY run-java.sh /usr/local
 RUN chmod 755 /usr/local/run-java.sh
 
