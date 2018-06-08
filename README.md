@@ -1,6 +1,6 @@
 
 # Creating a basic S2I builder image  
-
+Using this is a guide: https://blog.openshift.com/create-s2i-builder-image/
 ## Getting started  
 
 ### Files and Directories  
