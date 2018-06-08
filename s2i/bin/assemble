@@ -1,0 +1,44 @@
+
+#!/bin/bash -e
+#
+# S2I assemble script for the 'docker.io/jetty' image.
+# The 'assemble' script builds your application source ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+if [ "$1" = "-h" ]; then
+	# If the 'rmartine/jetty-s2i' assemble script is executed with '-h' flag,
+	# print the usage.
+	exec /usr/local/sti/usage
+fi
+
+echo "---> Installing application source"
+deploy_dir=/usr/local/jetty/webapps
+local_source_dir=/tmp/jetty/source
+mkdir -p $local_source_dir
+
+echo "---> Building application from source"
+cp -ad /tmp/src/* $local_source_dir
+if [ -f "$local_source_dir/pom.xml" ]; then
+
+	pushd $local_source_dir &> /dev/null
+	JAVA_HOME=/etc/alternatives/java_sdk
+	mvn clean package -Popenshift -DskipTests
+	err=$?
+
+	if [ $err -ne 0 ]; then
+		echo "Aborting due to error code $err from mvn package"
+		exit $err
+	fi
+
+	if [ -d $local_source_dir/target ]; then
+		echo "Copying built war/jar files into $deploy_dir for later deployment..."
+		cp $local_source_dir/target/*.jar $deploy_dir
+		cp $local_source_dir/target/*.war $deploy_dir
+	fi
+
+	echo "...done"
+	popd &> /dev/null
+fi
