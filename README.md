@@ -6,9 +6,12 @@ Using this is a guide: https://blog.openshift.com/create-s2i-builder-image/
 
 install S2I command line tools
 check out the repo
+Dependency: openshift/base-centos7
 
-Login to docker registry (minishift)
+Login to docker registry (minishift) (or use an external one)
 docker login -u developer -p $(oc whoami -t) $(minishift openshift registry)
+
+For information on proper OpenShift Docker Registry see: https://blog.openshift.com/remotely-push-pull-container-images-openshift/
 
 in the root folder of the project run make
 
