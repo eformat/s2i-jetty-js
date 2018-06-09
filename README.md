@@ -1,6 +1,28 @@
 
 # Creating a basic S2I builder image  
 Using this is a guide: https://blog.openshift.com/create-s2i-builder-image/
+
+## Cheat sheet
+
+install S2I command line tools
+check out the repo
+
+Login to docker registry (minishift)
+docker login -u developer -p $(oc whoami -t) $(minishift openshift registry)
+
+in the root folder of the project run make
+
+
+Then tag image (if using minishift use this)
+docker tag jetty/base-jdk:8 $(minishift openshift registry)/openshift/jetty-jdk8:latest
+
+Push image to openshift namespace in registry
+docker push $(minishift openshift registry)/openshift/jetty-jdk8:latest
+
+The image should now be available in the stream.
+
+Run the following template: s
+
 ## Getting started  
 
 ### Files and Directories  
